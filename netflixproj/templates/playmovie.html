@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+<main class="bg-primary_black h-full w-full">
+  {% for video in videos %}
+  <br />
+  <p class="mt-5">Episode {{ forloop.counter }}</p>
+  <div class="video-container">
+    <video class="video-js vjs-default-skin" controls preload="auto">
+      <source src="{{ video.file.url }}" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <br />
+  {% endfor %}
+</main>
+<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var videos = document.querySelectorAll(".video-js");
+    videos.forEach(function (video) {
+      video.style.width = "100%";
+      video.style.height = "100%";
+    });
+  });
+</script>
+{% endblock %}
